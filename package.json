@@ -1,0 +1,30 @@
+{
+  "name": "nbased",
+  "version": "1.0.0",
+  "description": "Utilities to write Event Driven & Serverless architectures on AWS adapted for Naranja",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/aeberdinelli/nbased.git"
+  },
+  "authors": [
+    "Naranja",
+    "AndresSomadossi <andressomadossi@gmail.com>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aeberdinelli/nbased/issues"
+  },
+  "homepage": "https://github.com/aeberdinelli/nbased#readme",
+  "dependencies": {
+    "aws-sdk": "^2.747.0",
+    "aws-xray-sdk-core": "^3.1.0",
+    "axios": "^0.20.0",
+    "js-yaml": "^3.14.0",
+    "schemy": "^1.9.0",
+    "uuid": "^8.3.0"
+  }
+}
