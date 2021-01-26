@@ -31,19 +31,21 @@ class DownstreamCommand {
   }
   validateRequest() {
     if (!this.requestSchema || skip) return validationSkipped(this.type);
+    const requestSchemaBody = {...this.requestSchema}; 
     this.requestSchema = new Schema(this.requestSchema);
     if (!this.requestSchema.validate(this.payload)) {
       const message = this.requestSchema.getValidationErrors();
       throw new FaultHandled(message, { code: ERROR_CODES.REQUEST_FAULT, layer: this.type, });
-    } else this.payload = this.requestSchema.getBody();
+    } else this.payload = this.requestSchema.getBody(requestSchemaBody.strict === false);
   }
   validateResponse(response) {
     if (!this.responseSchema) return validationSkipped(this.type);
+    const responseSchemaBody = {...this.responseSchema};
     this.responseSchema = new Schema(this.responseSchema);
     if (!this.responseSchema.validate(response)) {
       const message = this.responseSchema.getValidationErrors();
       throw new FaultHandled(message, { code: ERROR_CODES.RESPONSE_FAULT, layer: this.type, });
-    } else this.payload = this.responseSchema.getBody();
+    } else this.payload = this.responseSchema.getBody(responseSchemaBody.strict === false);
   }
   getErrorCataloged(code, message) {
     const catalogedError = this.errorCatalog[code];

@@ -24,11 +24,12 @@ class MetricEvent {
   }
   validate() {
     if (!this.schema || skip) return validationSkipped(this.type);
+    const schemaBody = {...this.schema}
     this.schema = new Schema(this.schema);
     if (!this.schema.validate(this.payload)) {
       const message = this.schema.getValidationErrors();
       throw new FaultHandled(message, { code: ERROR_CODES.CREATION_FAULT, layer: this.type, });
-    } else this.payload = this.schema.getBody();
+    } else this.payload = this.schema.getBody(schemaBody.strict === false);
   }
   publish() {
     customEvent(this);

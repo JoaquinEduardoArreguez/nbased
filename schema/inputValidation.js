@@ -26,6 +26,7 @@ class InputValidation {
   validate() {
     if (skip) return validationSkipped(this.type);
     if (!this.schema) throw new FaultHandled('Missing schema', { code: ERROR_CODES.CREATION_FAULT, layer: this.type })
+    const schemaBody = {...this.schema}
     this.schema = new Schema(this.schema);
     if (!this.schema.validate(this.payload)) {
       const message = this.schema.getValidationErrors();
@@ -34,7 +35,7 @@ class InputValidation {
       this.payload = { error: error.get(), originalPayload: this.payload };
       this.publish();
       throw error;
-    } else this.payload = this.schema.getBody();
+    } else this.payload = this.schema.getBody(schemaBody.strict === false);
   }
   publish() { if (this.source === 'CLIENT_COMMAND') customEvent(this) }
   get() { return this.payload }
