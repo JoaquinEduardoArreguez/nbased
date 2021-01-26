@@ -34,7 +34,7 @@ class InputValidation {
       this.payload = { error: error.get(), originalPayload: this.payload };
       this.publish();
       throw error;
-    } else this.payload = this.schema.getBody();
+    } else this.payload = this.schema.getBody(this.payload.strict === false);
   }
   publish() { if (this.source === 'CLIENT_COMMAND') customEvent(this) }
   get() { return this.payload }

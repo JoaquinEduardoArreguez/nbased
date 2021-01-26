@@ -35,7 +35,7 @@ class DownstreamCommand {
     if (!this.requestSchema.validate(this.payload)) {
       const message = this.requestSchema.getValidationErrors();
       throw new FaultHandled(message, { code: ERROR_CODES.REQUEST_FAULT, layer: this.type, });
-    } else this.payload = this.requestSchema.getBody();
+    } else this.payload = this.requestSchema.getBody(this.payload.strict === false);
   }
   validateResponse(response) {
     if (!this.responseSchema) return validationSkipped(this.type);
@@ -43,7 +43,7 @@ class DownstreamCommand {
     if (!this.responseSchema.validate(response)) {
       const message = this.responseSchema.getValidationErrors();
       throw new FaultHandled(message, { code: ERROR_CODES.RESPONSE_FAULT, layer: this.type, });
-    } else this.payload = this.responseSchema.getBody();
+    } else this.payload = this.responseSchema.getBody(this.payload.strict === false);
   }
   getErrorCataloged(code, message) {
     const catalogedError = this.errorCatalog[code];

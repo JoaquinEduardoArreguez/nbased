@@ -35,7 +35,7 @@ class DownstreamEvent {
     if (!this.schema.validate(this.payload)) {
       const message = this.schema.getValidationErrors();
       throw new FaultHandled(message, { code: ERROR_CODES.CREATION_FAULT, layer: this.type, });
-    } else this.payload = this.schema.getBody();
+    } else this.payload = this.schema.getBody(this.payload.strict === false);
   }
   publish() {
     customEvent(this);
