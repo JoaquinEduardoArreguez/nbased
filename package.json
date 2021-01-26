@@ -1,6 +1,6 @@
 {
   "name": "nbased",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Utilities to write Event Driven & Serverless architectures on AWS adapted for Naranja",
   "main": "index.js",
   "scripts": {
