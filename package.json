@@ -1,6 +1,6 @@
 {
   "name": "nbased",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "description": "Utilities to write Event Driven & Serverless architectures on AWS adapted for Naranja",
   "main": "index.js",
   "scripts": {
@@ -11,6 +11,9 @@
     "type": "git",
     "url": "git://github.com/aeberdinelli/nbased.git"
   },
+  "contributors": [
+    "Alan Berdinelli <aeberdinelli@gmail.com>"
+  ],
   "authors": [
     "Naranja",
     "AndresSomadossi <andressomadossi@gmail.com>"
